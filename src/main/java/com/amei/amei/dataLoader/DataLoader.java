@@ -27,7 +27,7 @@ public class DataLoader {
     @PostConstruct
     public void loadData() throws ParseException {
 
-         // Formato de fecha: "dd/MM/yyyy HH:mm"
+        // Formato de fecha: "dd/MM/yyyy HH:mm"
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         
         // Establecer fechas específicas para los empleados
