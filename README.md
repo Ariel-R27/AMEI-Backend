@@ -18,14 +18,14 @@ Este proyecto es una aplicación para gestionar empleados y departamentos dentro
    cd AMEI
    ```
 2. **Configurar el entorno de desarrollo**:
-   -Asegúrate de tener Java 17 instalado.
-   -Abre el proyecto en tu IDE favorito (como IntelliJ IDEA, Spring Tool Suite, etc.).
-   -Ejecuta el proyecto con Maven:
+   - Asegúrate de tener Java 17 instalado.
+   - Abre el proyecto en tu IDE favorito (como IntelliJ IDEA, Spring Tool Suite, etc.).
+   - Ejecuta el proyecto con Maven:
    ```bash
    mvn spring-boot:run
    ```
 ## Endpoints
--POST /department/create: Crea un nuevo departamento.
--POST /department/delete/{departmentId}: Elimina lógicamente un departamento.
--GET /employees: Obtiene todos los empleados.
--POST /employee/create: Crea un nuevo empleado.
+- POST /department/create: Crea un nuevo departamento.
+- POST /department/delete/{departmentId}: Elimina lógicamente un departamento.
+- GET /employees: Obtiene todos los empleados.
+- POST /employee/create: Crea un nuevo empleado.
