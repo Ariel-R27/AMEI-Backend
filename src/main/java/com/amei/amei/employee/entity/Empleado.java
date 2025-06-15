@@ -119,7 +119,7 @@ public class Empleado {
         this.fechaSalida = fechaSalida;
     }
 
-    public Estado isEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
