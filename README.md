@@ -24,9 +24,9 @@ La aplicación sigue una arquitectura Monolítica con las siguientes partes clav
   - Repositorios: Encargados de la persistencia de datos utilizando JPA y una base de datos en memoria H2.
   - Controladores: Exponen las APIs RESTful que permiten interacturar con el backend.
 
--**Frontend(Angular)**: Utiliza Forms para el formulario de empleados y departamentos, además de consumir las APIs proporcionadas por el backend.
+- **Frontend(Angular)**: Utiliza Forms para el formulario de empleados y departamentos, además de consumir las APIs proporcionadas por el backend.
 
--**Docker**: Los servicios se han contenedorizado utilizando Docker para facilitar su ejecución y despliegue en cualquier entorno.
+- **Docker**: Los servicios se han contenedorizado utilizando Docker para facilitar su ejecución y despliegue en cualquier entorno.
 
 ## Instalación o Ejecución
 
