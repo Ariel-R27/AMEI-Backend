@@ -98,6 +98,6 @@ La base de datos está configurada en memoria utilizando H2, con las siguientes 
   - Departamento: Almacena información sobre los departamentos, con nombre y estado.
 
 ## Notas
--Este proyecto utiliza CORS para habilitar el acceso desde el frontend (Angular) al backend (Spring Boot).
--Las validaciones de formularios se realizan utilizando ReactiveForms en Angular.
--Para la contenedorización, se utiliza Docker para crear imágenes y ejecutar ambos servicios (frontend y backend) de manera independiente y eficiente.
+- Este proyecto utiliza CORS para habilitar el acceso desde el frontend (Angular) al backend (Spring Boot).
+- Las validaciones de formularios se realizan utilizando ReactiveForms en Angular.
+- Para la contenedorización, se utiliza Docker para crear imágenes y ejecutar ambos servicios (frontend y backend) de manera independiente y eficiente.
