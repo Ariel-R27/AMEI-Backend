@@ -2,21 +2,26 @@ package com.amei.amei.employee.controller;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
+import com.amei.amei.employee.controller.EmployeeController;
+import com.amei.amei.employee.dto.EmpleadoDTO;
 import com.amei.amei.employee.entity.Empleado;
 import com.amei.amei.employee.service.EmployeeService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.InjectMocks;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.beans.factory.annotation.Autowired;
 
-@WebMvcTest(EmployeeController.class)  // Usamos WebMvcTest para los controladores
+@WebMvcTest(EmployeeController.class) 
 public class EmpleadoControllerTest {
-    /* 
+    
     @Mock
     private EmployeeService empleadoService;
 
@@ -25,34 +30,85 @@ public class EmpleadoControllerTest {
 
     @BeforeEach
     public void setup() {
-        // No es necesario configurar MockMvc aquí, ya que @WebMvcTest lo hace por nosotros
+        // No es necesario configurar MockMvc aquí, ya que @WebMvcTest lo hace
+    }
+
+    @Test
+    public void testCreateEmployee() throws Exception {
+        // Arrange
+        EmpleadoDTO empleadoDTO = new EmpleadoDTO();
+        empleadoDTO.setNombres("Luis");
+        empleadoDTO.setApellidos("Gonzalez");
+        empleadoDTO.setEdad(30);
+        empleadoDTO.setRol("Developer");
+        empleadoDTO.setSalario(3500.0);
+        
+        Empleado nuevoEmpleado = new Empleado();
+        nuevoEmpleado.setNombres("Luis");
+        nuevoEmpleado.setApellidos("Gonzalez");
+        nuevoEmpleado.setEdad(30);
+        nuevoEmpleado.setRol("Developer");
+        nuevoEmpleado.setSalario(3500.0);
+
+        when(employeeService.createEmployee(1, empleadoDTO)).thenReturn(nuevoEmpleado);
+        
+        mockMvc.perform(post("/employee/create/1")
+                .contentType("application/json")
+                .content("{\"nombres\":\"Luis\",\"apellidos\":\"Gonzalez\",\"edad\":30,\"rol\":\"Developer\",\"salario\":3500.0}"))
+                .andExpect(status().isCreated())
+                .andExpect(content().json("{\"nombres\":\"Luis\",\"apellidos\":\"Gonzalez\",\"edad\":30,\"rol\":\"Developer\",\"salario\":3500.0}"));
+    }
+
+    @Test
+    public void testDeleteEmployee() throws Exception {
+        Integer employeeId = 1;
+        mockMvc.perform(post("/employee/delete/" + employeeId))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Empleado eliminado lógicamente"));
+    }
+
+    @Test
+    public void testGetEmpleadoConSalarioMasAlto() throws Exception {
+        // Arrange
+        Empleado empleado = new Empleado();
+        empleado.setNombres("Pedro");
+        empleado.setApellidos("Gomez");
+        empleado.setSalario(6000.0);
+
+        when(employeeService.getEmpleadoConSalarioMasAlto()).thenReturn(empleado);
+
+        // Act and Assert
+        mockMvc.perform(get("/employee/highestSalary"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Empleado: Pedro Gomez, Salario: 6000.0"));
     }
 
     @Test
     public void testGetEmpleadoMasJoven() throws Exception {
-        // Crear un empleado de ejemplo
+        // Arrange
         Empleado empleado = new Empleado();
         empleado.setNombres("Maria");
-        empleado.setApellidos("Gonzalez");
+        empleado.setApellidos("Lopez");
         empleado.setEdad(19);
 
-        // Simula el comportamiento del servicio
-        when(empleadoService.getEmpleadoMasJoven()).thenReturn(empleado);
+        when(employeeService.getEmpleadoMasJoven()).thenReturn(empleado);
 
-        // Realizar la solicitud GET y validar la respuesta
+        // Act and Assert
         mockMvc.perform(get("/employee/lowerAge"))
-                .andExpect(status().isOk()) // Espera un estado OK (200)
-                .andExpect(content().string("Empleado: Maria Gonzalez, Edad: 19")); // Verifica que el contenido de la respuesta sea correcto
+                .andExpect(status().isOk())
+                .andExpect(content().string("Empleado: Maria Lopez, Edad: 19"));
     }
-
+    
     @Test
-    public void testGetEmpleadoMasJovenCuandoNoHayEmpleados() throws Exception {
-        // Simula que no hay empleados (lanza una excepción)
-        when(empleadoService.getEmpleadoMasJoven()).thenThrow(IllegalStateException.class);
+    public void testGetEmpleadosIngresaronUltimoMes() throws Exception {
+        // Arrange
+        long count = 5; // Ejemplo de empleados ingresados en el último mes
 
-        // Realizar la solicitud GET y verificar que la respuesta sea "Not Found" (404)
-        mockMvc.perform(get("/employee/lowerAge"))
-                .andExpect(status().isNotFound()); // Espera un estado Not Found (404)
+        when(employeeService.getEmpleadosIngresaronUltimoMes()).thenReturn(count);
+
+        // Act and Assert
+        mockMvc.perform(get("/employee/countLastMonth"))
+                .andExpect(status().isOk())
+                .andExpect(content().string("Número de empleados que ingresaron en el último mes: 5"));
     }
-                 */
 }
