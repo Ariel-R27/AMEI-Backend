@@ -87,9 +87,9 @@ Las APIs disponibles para pruebas son:
 1. Empleado: CRUD básico de empleados, con validaciones en el frontend y en el backend.
 2. Departamento: CRUD básico de departamentos.
 3. Estadísticas:
-  - Salario más alto.
-  - Empleado más joven.
-  - Número de empleados que ingresaron en el último mes.
+  -Salario más alto.
+   -Empleado más joven.
+   -Número de empleados que ingresaron en el último mes.
 
 ## Diseño de Base de datos 
 
